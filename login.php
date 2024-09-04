@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Simple Auth - Login</title>
+    <title>Login</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -25,7 +25,7 @@
           Login To Your Account
         </h5>
         <!-- login form-->
-        <form action="" method="POST">
+        <form action="do_login.php" method="POST">
           <div class="mb-3">
             <label for="email" class="form-label">Email address</label>
             <input type="email" class="form-control" id="email" name="email" />
