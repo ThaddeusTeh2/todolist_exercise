@@ -1,4 +1,6 @@
 <?php
+
+  //links db
   $host ="127.0.0.1";
   $database_name = "todoapp";
   $database_user = "root";
@@ -15,7 +17,7 @@
     $label = $_POST["id"];
 
 
-
+  //if box not ticked, tick it
   if ( $check== 0) {
     $sql = "UPDATE tasks SET completed = 1 WHERE id = :id";
     $query = $database -> prepare($sql);
@@ -27,6 +29,7 @@
     exit;
   }
 
+  //if box ticked, untick it
   else {
     $sql = "UPDATE tasks SET completed = 0 WHERE id = :id";
     $query = $database -> prepare($sql);
