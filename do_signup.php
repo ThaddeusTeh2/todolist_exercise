@@ -67,7 +67,36 @@
           <i class="bi bi-arrow-left-circle"></i> Go back</a>
         </div>';
 
-    } 
+    }
+
+        else {
+          // check if the email already in-used or not
+          // sql command
+          $sql = "SELECT * FROM users WHERE email = :email";    
+    
+          //prepare
+          $query = $database -> prepare($sql);
+    
+          // execute
+          $query -> execute([
+              'email' => $email
+          ]);
+
+        }
+    
+          // fetch
+          $user = $query -> fetch(); //return the first row starting from the query row
+    
+          // if user exists, it means the email already in-used
+          if ( $user ) {
+            echo '<div class="text-center">
+            <h1>Email already in use, try another</h1>
+            <a href="sign_up.php" class="text-decoration-none">
+            <i class="bi bi-arrow-left-circle"></i> Go back</a>
+          </div>';
+          }
+
+    
 
     //if all the above is satisfied run dis
     else {
