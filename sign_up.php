@@ -72,7 +72,7 @@
 
     <!-- Go back link -->
     <div class="text-center">
-      <a href="index.html" class="text-decoration-none"
+      <a href="index.php" class="text-decoration-none"
         ><i class="bi bi-arrow-left-circle"></i> Go back</a
       >
     </div>
