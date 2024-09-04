@@ -52,6 +52,11 @@
     </style>
   </head>
   <body>
+
+
+  <a href="login.php">Login</a>
+  <a href="sign_up.php">Sign Up</a>
+
     <div
       class="card rounded shadow-sm"
       style="max-width: 500px; margin: 60px auto;"
