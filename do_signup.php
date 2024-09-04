@@ -22,7 +22,7 @@
     
 <?php
 
-    
+    //links db
     $host = '127.0.0.1';
     $database_name = "todoapp";  
     $database_user = "root";
@@ -35,12 +35,14 @@
         $database_password 
     );
 
+    //declarations
+
     $name = $_POST['name'];
     $email = $_POST['email'];
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
 
-
+    //checks if all fields are filled in
     if ( empty( $name ) || empty( $email ) || empty( $password ) || empty( $confirm_password ) ) {
         echo '<div class="text-center">
           <h1>Please fill in all fields</h1>
@@ -48,13 +50,15 @@
           <i class="bi bi-arrow-left-circle"></i> Go back</a>
         </div>';
 
+    //checks if password and confim password are the same
     } else if ( $password !== $confirm_password ) {
         echo '<div class="text-center">
           <h1>Password must be the same</h1>
           <a href="sign_up.php" class="text-decoration-none">
           <i class="bi bi-arrow-left-circle"></i> Go back</a>
         </div>';
-
+    
+    //checks if password is atleast 8 letters long
     } else if ( strlen( $password ) < 8 ) { 
 
         echo '<div class="text-center">
@@ -65,7 +69,7 @@
 
     } 
 
-
+    //if all the above is satisfied run dis
     else {
 
         $sql = "INSERT INTO users (`name`,`email`,`password`) VALUES (:name, :email, :password)";
@@ -78,7 +82,7 @@
             'password' => password_hash ($password, PASSWORD_DEFAULT )
         ]);
 
-
+        //sends user to login page
         header("Location: login.php");
         exit;
         

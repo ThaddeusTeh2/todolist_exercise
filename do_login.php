@@ -1,3 +1,4 @@
+<!--starts a session-->
 <? session_start(); ?>
 
 <!DOCTYPE html>
@@ -24,7 +25,7 @@
     
 <?php
 
-    
+    //link to db
     $host = '127.0.0.1';
     $database_name = "todoapp";  
     $database_user = "root";
@@ -37,11 +38,11 @@
         $database_password 
     );
 
-    
+    //declarations
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    
+    //checks if form is filled in
     if ( empty( $email ) || empty( $password ) ) {
 
       echo '<div class="text-center">
@@ -50,6 +51,7 @@
       <i class="bi bi-arrow-left-circle"></i> Go back</a>
     </div>';
 
+    //picks data from table from db
     } else {
         
         $sql = "SELECT * FROM users WHERE email = :email";
@@ -62,9 +64,10 @@
        
         $user = $query->fetch(); 
         
-        
+        //gets user info
         if ( $user ) {
             
+            //checks if user info matches input
             if ( password_verify( $password, $user["password"] ) ) {
                 
                 $_SESSION['user'] = $user;
@@ -72,7 +75,7 @@
                 header("Location: index.php");
                 exit;  
 
-
+              //tells u password is wrong
             } else {
 
               echo '<div class="text-center">
@@ -82,6 +85,7 @@
             </div>';
 
             }
+            //if none of the above is satisfied print dis
         } else {
           echo '<div class="text-center">
           <h1>Account doesnt exist</h1>
