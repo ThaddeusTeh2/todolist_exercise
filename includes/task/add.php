@@ -1,14 +1,6 @@
 <?php
-  $host ="127.0.0.1";
-  $database_name = "todoapp";
-  $database_user = "root";
-  $database_password = "";
-
-   $database = new PDO(
-    "mysql:host=$host;dbname=$database_name",
-    $database_user,
-    $database_password
-  );
+  //links to db
+  $database = connectToDB();
 
   $sql = "SELECT * FROM tasks";
 
@@ -23,7 +15,7 @@
   $label = $_POST["new_task"];
 
   if ( empty( $label ) ) {
-    echo "Please add a task.";
+    setError( "Please add something.", '/home' );
 } else {
 
     $sql = 'INSERT INTO tasks (`label`) VALUES (:label)';
@@ -34,6 +26,6 @@
         'label' => $label
     ]);
     
-    header("Location: index.php");
+    header("Location: /");
     exit;
 }

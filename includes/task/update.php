@@ -1,17 +1,7 @@
 <?php
 
   //links db
-  $host ="127.0.0.1";
-  $database_name = "todoapp";
-  $database_user = "root";
-  $database_password = "";
-
-
-  $database = new PDO(
-    "mysql:host=$host;dbname=$database_name",
-    $database_user,
-    $database_password
-  );
+  $database = connectToDB();
 
   $check = $_POST["completed"];
     $label = $_POST["id"];
@@ -25,7 +15,7 @@
       "id" => $label
     ]);
 
-    header("Location: index.php");
+    header("Location: /");
     exit;
   }
 
@@ -37,7 +27,7 @@
       "id" => $label
     ]);
 
-    header("Location: index.php");
+    header("Location: /");
     exit;
   }
 

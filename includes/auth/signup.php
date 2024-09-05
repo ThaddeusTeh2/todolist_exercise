@@ -23,17 +23,7 @@
 <?php
 
     //links db
-    $host = '127.0.0.1';
-    $database_name = "todoapp";  
-    $database_user = "root";
-    $database_password = "";
-
-    
-    $database = new PDO(
-        "mysql:host=$host;dbname=$database_name",
-        $database_user, 
-        $database_password 
-    );
+    $database = connectToDB();
 
     //declarations
 
@@ -44,28 +34,16 @@
 
     //checks if all fields are filled in
     if ( empty( $name ) || empty( $email ) || empty( $password ) || empty( $confirm_password ) ) {
-        echo '<div class="text-center">
-          <h1>Please fill in all fields</h1>
-          <a href="sign_up.php" class="text-decoration-none">
-          <i class="bi bi-arrow-left-circle"></i> Go back</a>
-        </div>';
+      setError( "Please fill in all fields.", '/signup' );
 
     //checks if password and confim password are the same
     } else if ( $password !== $confirm_password ) {
-        echo '<div class="text-center">
-          <h1>Password must be the same</h1>
-          <a href="sign_up.php" class="text-decoration-none">
-          <i class="bi bi-arrow-left-circle"></i> Go back</a>
-        </div>';
+      setError( "Password must be the same.", '/signup' );
     
     //checks if password is atleast 8 letters long
     } else if ( strlen( $password ) < 8 ) { 
 
-        echo '<div class="text-center">
-          <h1>Password must be atleast 8 characters long</h1>
-          <a href="sign_up.php" class="text-decoration-none">
-          <i class="bi bi-arrow-left-circle"></i> Go back</a>
-        </div>';
+      setError( "Password must be atleast 8 characters long.", '/signup' );
 
     }
 
@@ -89,11 +67,7 @@
     
           // if user exists, it means the email already in-used
           if ( $user ) {
-            echo '<div class="text-center">
-            <h1>Email already in use, try another</h1>
-            <a href="sign_up.php" class="text-decoration-none">
-            <i class="bi bi-arrow-left-circle"></i> Go back</a>
-          </div>';
+            setError( "Email in use.", '/signup' );
           }
 
     
@@ -112,7 +86,7 @@
         ]);
 
         //sends user to login page
-        header("Location: login.php");
+        header("Location: /login");
         exit;
         
     }
